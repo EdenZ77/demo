@@ -8,4 +8,14 @@ layout:
 - go.kubebuilder.io/v4
 projectName: demo
 repo: mashibing.com/demo/app
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: mashibing.com
+  group: demo
+  kind: App
+  path: mashibing.com/demo/app/api/v1
+  version: v1
 version: "3"
