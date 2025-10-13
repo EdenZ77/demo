@@ -3,10 +3,11 @@
 # and allow the plugins properly work.
 # More info: https://book.kubebuilder.io/reference/project-config.html
 cliVersion: 4.9.0
-domain: mashibing.com
+domain: mashibing.com # 直接取自kubebuilder init时通过--domain标志指定的值。
 layout:
-- go.kubebuilder.io/v4
-projectName: demo
+- go.kubebuilder.io/v4 # 它定义了项目的目录结构和代码组织方式
+projectName: demo # 如果在kubebuilder init时使用了--project-name标志，则取该值；否则，通常使用所在目录的名称。
+# kubebuilder init时通过--repo标志显式指定。如果未指定--repo，工具会尝试在当前目录执行go mod init或读取已有的go.mod文件来获取模块路径。
 repo: mashibing.com/demo/app
 resources:
 - api:
@@ -16,6 +17,8 @@ resources:
   domain: mashibing.com
   group: demo
   kind: App
-  path: mashibing.com/demo/app/api/v1
+  path: mashibing.com/demo/app/api/v1 # path = <repo> + "/api/" + <version>
   version: v1
 version: "3"
+# 可以看到resources下面是数组，那如何继续添加API资源呢，直接继续执行下面的命令即可：
+# kubebuilder create api --group webapp --version v1 --kind Backend
