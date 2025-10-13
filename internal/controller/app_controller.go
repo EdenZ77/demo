@@ -18,11 +18,12 @@ package controller
 
 import (
 	"context"
+	"fmt"
 
 	"k8s.io/apimachinery/pkg/runtime"
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client"
-	logf "sigs.k8s.io/controller-runtime/pkg/log"
+	"sigs.k8s.io/controller-runtime/pkg/log"
 
 	demov1 "mashibing.com/demo/app/api/v1"
 )
@@ -47,9 +48,35 @@ type AppReconciler struct {
 // For more details, check Reconcile and its Result here:
 // - https://pkg.go.dev/sigs.k8s.io/controller-runtime@v0.22.1/pkg/reconcile
 func (r *AppReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
-	_ = logf.FromContext(ctx)
+	logger := log.FromContext(ctx)
+	logger.Info("Start reconcile")
 
-	// TODO(user): your logic here
+	// 实现你的业务逻辑
+	// 1. 获取资源对象
+	app := new(demov1.App)
+	if err := r.Client.Get(ctx, req.NamespacedName, app); err != nil {
+		logger.Error(err, " Get resource")
+		return ctrl.Result{}, client.IgnoreNotFound(err)
+	}
+
+	// 2. 处理数据
+	// 2.1 获取对应的字段
+	action := app.Spec.Action
+	object := app.Spec.Object
+
+	// 2.2 拼接数据
+	result := fmt.Sprintf("%s,%s", action, object)
+
+	// 3. 创建结果
+	appCopy := app.DeepCopy()
+	appCopy.Status.Result = result
+
+	// 4. 更新 status
+	if err := r.Client.Status().Update(ctx, appCopy); err != nil {
+		return ctrl.Result{}, err
+	}
+
+	logger.Info("End reconcile")
 
 	return ctrl.Result{}, nil
 }
