@@ -1,0 +1,9 @@
+apiVersion: demo.mashibing.com/v1
+kind: Bpp
+metadata:
+  labels:
+    app.kubernetes.io/name: demo
+    app.kubernetes.io/managed-by: kustomize
+  name: bpp-sample
+spec:
+  # TODO(user): Add fields here

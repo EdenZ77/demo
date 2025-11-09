@@ -3,6 +3,7 @@
 # It should be run by config/default
 resources:
 - bases/demo.mashibing.com_apps.yaml
+- bases/demo.mashibing.com_bpps.yaml
 # +kubebuilder:scaffold:crdkustomizeresource
 
 patches:

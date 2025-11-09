@@ -22,6 +22,9 @@ resources:
 # default, aiding admins in cluster management. Those roles are
 # not used by the demo itself. You can comment the following lines
 # if you do not want those helpers be installed with your Project.
+- bpp_admin_role.yaml
+- bpp_editor_role.yaml
+- bpp_viewer_role.yaml
 - app_admin_role.yaml
 - app_editor_role.yaml
 - app_viewer_role.yaml
