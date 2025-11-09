@@ -2,6 +2,7 @@
 # This file is used to track the info used to scaffold your project
 # and allow the plugins properly work.
 # More info: https://book.kubebuilder.io/reference/project-config.html
+# 可以通过kubebuilder init --help命令查看可设置的选项
 cliVersion: 4.9.0
 domain: mashibing.com # 直接取自kubebuilder init时通过--domain标志指定的值。
 layout:
@@ -20,5 +21,6 @@ resources:
   path: mashibing.com/demo/app/api/v1 # path = <repo> + "/api/" + <version>
   version: v1
 version: "3"
+# kubebuilder create api --group demo --version v1 --kind App
 # 可以看到resources下面是数组，那如何继续添加API资源呢，直接继续执行下面的命令即可：
 # kubebuilder create api --group webapp --version v1 --kind Backend

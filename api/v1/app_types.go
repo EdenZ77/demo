@@ -31,11 +31,11 @@ type AppSpec struct {
 	// More info: https://book.kubebuilder.io/reference/markers/crd-validation.html
 
 	// Action 对兑现做什么动作，例如给一个 Hello
-	//+optional
+	// +optional
 	Action string `json:"action,omitempty"`
 
 	// Object 对什么操作，例如给一个 World
-	//+optional
+	// +optional
 	Object string `json:"object,omitempty"`
 }
 
@@ -48,7 +48,7 @@ type AppStatus struct {
 	// https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#typical-status-properties
 
 	// Result 显示 action+obeject
-	//+optional
+	// +optional
 	Result string `json:"result,omitempty"`
 }
 
